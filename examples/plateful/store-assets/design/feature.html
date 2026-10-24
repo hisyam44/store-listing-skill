@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-play-frame="card">
+<head>
+<meta charset="utf-8">
+<title>Plateful · feature graphic</title>
+<!-- Google Play feature graphic: 1024x500, no alpha. Keep the logo, name and tagline near the
+     centre-left, avoid device bezels, store badges and claims like "#1" or "Free". -->
+<meta name="store-targets" content="play-feature">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=block">
+<link rel="stylesheet" href="kit/kit.css">
+<style>
+  :root {
+    --accent: #ff5a36;
+    --accent-2: #ffc55c;
+    --ink: #15151a;
+    --font-display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .feature { --bg: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%); --ink: #fff; }
+  .feature .brand p { color: rgba(255, 255, 255, .92); }
+  .feature .device { --device-shadow: 0 3cqw 8cqw rgba(0, 0, 0, .28); }
+</style>
+</head>
+<body>
+
+<section class="slide feature" data-name="feature">
+  <div class="brand">
+    <img class="app-icon" src="assets/icon.svg" alt="">
+    <h1 data-fit="2">Plateful</h1>
+    <p data-fit="2">Recipes, meal plans and groceries. One app.</p>
+  </div>
+  <div class="visual fan">
+    <div class="device" data-frame="card" data-shot="today"></div>
+    <div class="device" data-frame="card" data-shot="recipes"></div>
+    <div class="device" data-frame="card" data-shot="recipe"></div>
+  </div>
+  <div class="dots" style="right: -5rem; bottom: -8rem; --dots: rgba(255,255,255,.35)"></div>
+</section>
+
+<script src="kit/kit.js"></script>
+</body>
+</html>

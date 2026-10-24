@@ -1,0 +1,190 @@
+/* Store-listing visual styles.
+ *
+ * Every style is scoped to a slide class (.s-<style>) so a file can mix styles and the style
+ * gallery can show them side by side. Feature-graphic styles are .f-<style>. Brand tokens
+ * (--accent, --accent-2, --font-display) come from the design file's :root; each style only
+ * decides how to use them. See references/styles.md for what each style is good for.
+ */
+
+/* ------------------------------------------------------------------ bold-gradient
+   Brand-gradient hero, soft tinted benefit slides, devices bleeding off the edge, chips and a
+   sticker. Warm and energetic: lifestyle, food, habits, social, shopping. */
+.s-bold-gradient { --bg: var(--soft); }
+.s-bold-gradient.hero { --bg: linear-gradient(165deg, var(--accent) 0%, var(--accent-2) 100%); --ink: #fff; --muted: rgba(255, 255, 255, .9); }
+.s-bold-gradient.hero .caption h1 { font-size: 12rem; }
+
+/* ------------------------------------------------------------------ clean-minimal
+   Near-white, left-aligned headline with a quiet second line, frameless screens with lots of
+   air. Clarity and trust first: finance, productivity, utilities, health data, B2B. */
+.s-clean-minimal {
+  --bg: #f6f6f7; --ink: #0f1115; --muted: #6a6f7b; --h1: 8.8rem;
+  --device-shadow: 0 3cqw 12cqw rgba(15, 17, 21, .13), 0 0 0 .25cqw rgba(15, 17, 21, .06);
+}
+.s-clean-minimal .caption { text-align: left; padding-left: 9rem; padding-right: 9rem; }
+.s-clean-minimal .caption h1 { font-weight: 700; letter-spacing: -.04em; }
+.s-clean-minimal .caption h1 .accent { color: var(--muted); }
+.s-clean-minimal .caption p { margin-left: 0; }
+.s-clean-minimal .eyebrow { color: var(--accent); }
+.s-clean-minimal .stage { --dw: 74; }
+.s-clean-minimal.hero { --bg: #fff; }
+.s-clean-minimal.hero .app-icon { width: 17rem; margin-bottom: 4.4rem; }
+.s-clean-minimal .chip { box-shadow: 0 1rem 4rem rgba(15, 17, 21, .12), 0 0 0 .25rem rgba(15, 17, 21, .06); }
+
+/* ------------------------------------------------------------------ dark-premium
+   Deep dark background lit by a brand-colour glow, gradient accent words, glass chips.
+   Pro tools, AI, finance, fitness, music, photo/video, anything with a real dark mode. */
+.s-dark-premium {
+  --bg: radial-gradient(120% 58% at 50% 0%, color-mix(in srgb, var(--accent) 52%, transparent) 0%, transparent 62%), #0b0c17;
+  --ink: #fff; --muted: rgba(255, 255, 255, .64);
+  --chip-bg: #171826; --chip-ink: #fff;
+  --device-shadow: 0 0 0 .3cqw rgba(255, 255, 255, .08), 0 6cqw 20cqw color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.s-dark-premium .caption h1 .accent {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.s-dark-premium .chip, .s-dark-premium .badge { box-shadow: inset 0 0 0 .3rem rgba(255, 255, 255, .16), 0 2rem 5rem rgba(0, 0, 0, .45); }
+.s-dark-premium .chip.solid { background: var(--accent); }
+.s-dark-premium .eyebrow { color: var(--accent-2); }
+.s-dark-premium.hero .caption h1 { font-size: 11rem; }
+
+/* ------------------------------------------------------------------ editorial
+   Paper background, serif headline with an italic accent, numbered eyebrow and a rule.
+   Calm and crafted: reading, journaling, recipes, travel, wellness, education. */
+.s-editorial {
+  --bg: #f4eee4; --ink: #1f1b16; --muted: #6b6258; --h1: 10rem;
+  --font-display: var(--font-serif, "Fraunces", "DM Serif Display", Georgia, serif);
+  --device-shadow: 0 2.4cqw 9cqw rgba(60, 40, 20, .2);
+}
+.s-editorial .caption { text-align: left; padding: 10rem 9rem 0; }
+.s-editorial .caption h1 { font-weight: 500; letter-spacing: -.02em; line-height: 1.02; }
+.s-editorial .caption h1 .accent { font-style: italic; color: var(--accent); }
+.s-editorial .caption p { margin-left: 0; }
+.s-editorial .eyebrow { display: block; margin-bottom: 4rem; padding-top: 2.6rem; border-top: .35rem solid var(--ink); color: var(--muted); font-weight: 600; letter-spacing: .16em; }
+.s-editorial .stage { --dw: 76; }
+.s-editorial .chip { font-family: var(--font-body); border-radius: 1.4rem; }
+
+/* ------------------------------------------------------------------ playful-pop
+   A different bright colour per slide, rounded chunky type, tilted devices, emoji bubbles and
+   stickers. Fun and young: kids, education, social, casual games, habit and pet apps.
+   The generator sets --bg / --ink per slide from the brand hue so text stays readable. */
+.s-playful-pop { --font-display: "Fredoka", "Baloo 2", system-ui, sans-serif; --h1: 11rem; --chip-ink: #1d1b2e; }
+.s-playful-pop .caption h1 { font-weight: 700; letter-spacing: -.01em; line-height: 1; }
+.s-playful-pop .caption h1 .accent { color: inherit; opacity: .78; }
+.s-playful-pop .shape { position: absolute; z-index: 0; border-radius: 50%; background: rgba(255, 255, 255, .18); }
+.s-playful-pop .sticker { --sticker-bg: #fff; --sticker-ink: #1d1b2e; }
+
+/* ------------------------------------------------------------------ neo-brutal
+   Cream background, heavy grotesk type, black outlines and hard offset shadows, highlighter
+   accent. Bold and current: productivity, dev and creator tools, Gen-Z social. */
+.s-neo-brutal {
+  --bg: #fff8e6; --ink: #111; --muted: #333; --h1: 10rem;
+  --font-display: "Space Grotesk", "Archivo", system-ui, sans-serif;
+  --chip-bg: #fff; --chip-ink: #111;
+}
+.s-neo-brutal .caption { text-align: left; padding: 10rem 8rem 0; }
+.s-neo-brutal .caption h1 { font-weight: 700; letter-spacing: -.035em; line-height: 1.16; }
+.s-neo-brutal .caption h1 .accent {
+  /* trimmed highlight: a full inline background would paint over the line above's descenders */
+  background: linear-gradient(transparent 16%, var(--accent) 16% 96%, transparent 96%); color: var(--on-accent);
+  padding: 0 .14em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.s-neo-brutal .caption p { margin-left: 0; color: var(--ink); }
+.s-neo-brutal .dv-card .dv-body { box-shadow: 0 0 0 1.1cqw #111, 3.4cqw 3.4cqw 0 1.1cqw #111; }
+.s-neo-brutal .chip, .s-neo-brutal .badge { border: .55rem solid #111; border-radius: 1.6rem; box-shadow: 1.2rem 1.2rem 0 #111; }
+.s-neo-brutal .sticker {
+  clip-path: none; aspect-ratio: auto; width: auto; padding: 2.6rem 3.8rem; border: .55rem solid #111; border-radius: 2.4rem;
+  background: var(--accent-2); color: #111; box-shadow: 1.2rem 1.2rem 0 #111;
+}
+
+/* ------------------------------------------------------------------ big-number
+   A huge figure from the app (a streak, a total, a score) leads each slide, with the screen
+   that produced it. Data-forward: finance, health, fitness, habits, analytics.
+   Only use numbers the captured UI actually shows. */
+.s-big-number { --bg: #fff; --h1: 8rem; }
+.s-big-number:nth-of-type(even) { --bg: var(--soft); }
+.s-big-number .caption { text-align: left; padding-left: 9rem; padding-right: 9rem; }
+.s-big-number .caption p { margin-left: 0; }
+
+/* ------------------------------------------------------------------ panoramic
+   One continuous background runs across the whole set, so the gallery reads as one canvas.
+   Rare in the stores (a few percent of top titles), so it stands out. Journeys and flows. */
+.s-panoramic { --bg: transparent; --ink: #fff; --muted: rgba(255, 255, 255, .9); --chip-ink: #15151a; }
+.s-panoramic .caption h1 { text-shadow: 0 .6rem 3rem rgba(0, 0, 0, .12); }
+.s-panoramic .caption h1 .accent { color: color-mix(in srgb, var(--accent) 28%, #1a0f33); text-shadow: none; }
+.pan-bg.p-panoramic { background: linear-gradient(100deg, var(--accent) 0%, var(--accent-2) 55%, color-mix(in srgb, var(--accent) 70%, #3b1d8f) 100%); }
+.pan-bg.p-panoramic .wave { position: absolute; left: 0; width: 100%; height: 40vh; bottom: 0; }
+.pan-bg.p-panoramic .orb { position: absolute; border-radius: 50%; background: rgba(255, 255, 255, .2); box-shadow: 0 0 0 6vmin rgba(255, 255, 255, .07); }
+
+/* ------------------------------------------------------------------ game-cinematic
+   Full-bleed gameplay, chunky outlined captions on a scrim. Immersive games of any genre. */
+.s-game-cinematic {
+  --ink: #fff; --font-display: "Lilita One", "Luckiest Guy", system-ui, sans-serif;
+  --outline: color-mix(in srgb, var(--accent) 30%, #120b2b);
+  --scrim: color-mix(in srgb, var(--outline) 75%, transparent);
+}
+.s-game-cinematic .caption h1 {
+  font-size: 14rem; font-weight: 400; letter-spacing: .01em; line-height: .98;
+  -webkit-text-stroke: 1.4rem var(--outline); paint-order: stroke fill; text-shadow: 0 1.2rem 0 var(--outline);
+}
+.s-game-cinematic .caption h1 .accent { color: var(--accent-2); }
+.s-game-cinematic .caption p { font-weight: 700; text-shadow: 0 .4rem 1.6rem rgba(0, 0, 0, .5); }
+.s-game-cinematic .badge { --on-accent: var(--outline); background: var(--accent-2); }
+
+/* ------------------------------------------------------------------ game-banner
+   Bright backdrop, the game logo on top, gameplay in a thick white card, the caption on a
+   ribbon banner. Casual, hyper-casual, puzzle, idle and kids' games. */
+.s-game-banner {
+  --bg: linear-gradient(180deg, color-mix(in srgb, var(--accent-2) 45%, #fff) 0%, var(--accent-2) 100%);
+  --ink: #fff; --font-display: "Lilita One", "Luckiest Guy", system-ui, sans-serif;
+  --outline: color-mix(in srgb, var(--accent) 30%, #120b2b);
+  --device-shadow: 0 0 0 2.4cqw #fff, 0 4cqw 10cqw rgba(0, 0, 0, .3);
+}
+.s-game-banner .stage { padding: 8rem 0 26rem; --dw: 72; }
+.s-game-banner .game-logo {
+  position: relative; z-index: 4; margin: 7rem auto 0; text-align: center;
+  font: 400 15rem/.9 var(--font-display); color: #fff;
+  -webkit-text-stroke: 1.6rem var(--outline); paint-order: stroke fill; text-shadow: 0 1.4rem 0 var(--outline);
+}
+.s-game-banner .caption.ribbon {
+  position: absolute; z-index: 6; left: 50%; bottom: 8rem; width: 88%; padding: 3.4rem 8rem 4rem;
+  transform: translateX(-50%) rotate(-2.5deg);
+  background: var(--accent); box-shadow: 0 1.4rem 0 var(--outline);
+  clip-path: polygon(0 0, 100% 0, 95% 50%, 100% 100%, 0 100%, 5% 50%);
+}
+.s-game-banner .caption.ribbon h1 {
+  font-size: 10rem; font-weight: 400; line-height: 1;
+  -webkit-text-stroke: 1.1rem var(--outline); paint-order: stroke fill;
+}
+.s-game-banner .caption.ribbon h1 .accent { color: var(--accent-2); }
+
+/* ================================================================== feature graphic styles
+   1024x500, so 1rem = 5px. Keep the name and tagline away from the edges and leave the centre
+   readable (Play may put a play button there when there's a promo video). */
+
+/* brand + fanned screen cards (Honeydew) */
+.f-brand-fan { --bg: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%); --ink: #fff; }
+.f-brand-fan .brand p { color: rgba(255, 255, 255, .92); }
+
+/* full-bleed game/app art with the title (Alto's Adventure) */
+.f-art-title { --ink: #fff; padding: 0; justify-content: center; }
+.f-art-title .shade { position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at center, rgba(10, 8, 30, .5), transparent 68%); }
+.f-art-title .brand { flex: none; align-items: center; text-align: center; }
+.f-art-title .brand h1 { font-size: 20rem; text-shadow: 0 1rem 4rem rgba(0, 0, 0, .35); }
+.f-art-title .brand p { text-shadow: 0 .6rem 2rem rgba(0, 0, 0, .45); }
+.f-art-title.right { justify-content: flex-end; padding-right: 7rem; }
+.f-art-title.right .shade { background: radial-gradient(ellipse at 72% 50%, rgba(10, 8, 30, .5), transparent 60%); }
+/* no landscape art (apps): a blurred, brand-tinted capture as the backdrop */
+.f-art-title.blur-art .bg-shot { filter: blur(1.8rem) saturate(1.2); transform: scale(1.2); }
+.f-art-title.blur-art .shade { background: linear-gradient(120deg, color-mix(in srgb, var(--accent) 82%, transparent), color-mix(in srgb, var(--accent-2) 62%, transparent)); }
+
+/* bold name in the centre, product pieces scattered around the edges (Pandora, Poshmark) */
+.f-collage { --bg: radial-gradient(120% 140% at 50% 50%, var(--accent-2) 0%, var(--accent) 70%); --ink: #fff; justify-content: center; padding: 0; }
+.f-collage .brand { flex: none; max-width: 58%; align-items: center; text-align: center; gap: 2.4rem; }
+.f-collage .brand h1 { font-size: 17rem; text-shadow: 0 1rem 3rem rgba(0, 0, 0, .18); }
+.f-collage .scatter { position: absolute; z-index: 1; width: 21cqh; }
+
+/* value proposition left, one big tilted screen card right (GoodRx, Audible) */
+.f-split-card { --bg: linear-gradient(115deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 60%, var(--accent-2)) 100%); --ink: #fff; }
+.f-split-card .visual .device { width: 52cqh; left: 24%; top: 14%; transform: rotate(-8deg); }
+.f-split-card .visual .device + .device { width: 44cqh; left: 58%; top: 34%; transform: rotate(6deg); }

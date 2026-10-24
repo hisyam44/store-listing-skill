@@ -1,0 +1,354 @@
+{
+  "baseUrl": "http://localhost:8080/",
+  "fps": 30,
+  "capturedAt": "2026-10-23T17:53:14.190Z",
+  "devices": {
+    "phone": {
+      "kind": "phone",
+      "style": "ios",
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "deviceScaleFactor": 2,
+      "statusBar": 0,
+      "orientation": "portrait"
+    },
+    "phone-android": {
+      "kind": "phone",
+      "style": "android",
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "deviceScaleFactor": 3,
+      "statusBar": 0,
+      "orientation": "portrait"
+    },
+    "desktop": {
+      "kind": "desktop",
+      "style": null,
+      "viewport": {
+        "width": 1024,
+        "height": 640
+      },
+      "deviceScaleFactor": 2,
+      "statusBar": 0,
+      "orientation": "landscape"
+    }
+  },
+  "captures": [
+    {
+      "name": "title",
+      "type": "screenshot",
+      "file": "phone/title.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "title",
+      "type": "screenshot",
+      "file": "phone-android/title.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-01",
+      "type": "screenshot",
+      "file": "phone/play-01.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-02",
+      "type": "screenshot",
+      "file": "phone/play-02.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-03",
+      "type": "screenshot",
+      "file": "phone/play-03.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-04",
+      "type": "screenshot",
+      "file": "phone/play-04.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-05",
+      "type": "screenshot",
+      "file": "phone/play-05.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-06",
+      "type": "screenshot",
+      "file": "phone/play-06.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play",
+      "type": "screenshot",
+      "file": "phone/play.png",
+      "width": 1320,
+      "height": 2868,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-01",
+      "type": "screenshot",
+      "file": "phone-android/play-01.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-02",
+      "type": "screenshot",
+      "file": "phone-android/play-02.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-03",
+      "type": "screenshot",
+      "file": "phone-android/play-03.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-04",
+      "type": "screenshot",
+      "file": "phone-android/play-04.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-05",
+      "type": "screenshot",
+      "file": "phone-android/play-05.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play-06",
+      "type": "screenshot",
+      "file": "phone-android/play-06.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "play",
+      "type": "screenshot",
+      "file": "phone-android/play.png",
+      "width": 1080,
+      "height": 1920,
+      "device": "phone-android",
+      "deviceKind": "phone",
+      "deviceStyle": "android",
+      "statusBar": 0,
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "feature-art",
+      "type": "screenshot",
+      "file": "desktop/feature-art.png",
+      "width": 2048,
+      "height": 1280,
+      "device": "desktop",
+      "deviceKind": "desktop",
+      "deviceStyle": null,
+      "statusBar": 0,
+      "viewport": {
+        "width": 1024,
+        "height": 640
+      },
+      "orientation": "landscape"
+    },
+    {
+      "name": "gameplay",
+      "type": "video",
+      "file": "phone/gameplay.mp4",
+      "width": 880,
+      "height": 1912,
+      "duration": 10.567,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 0,
+      "viewport": {
+        "width": 440,
+        "height": 956
+      },
+      "orientation": "portrait",
+      "recorder": "screenshot",
+      "sourceFrames": 211,
+      "sourceFps": 20,
+      "marks": [
+        {
+          "t": 0.3,
+          "do": "tap"
+        },
+        {
+          "t": 0.45,
+          "do": "pressed"
+        },
+        {
+          "t": 1.03,
+          "do": "wait"
+        },
+        {
+          "t": 10.03,
+          "do": "end-of-actions"
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "consoleErrors": []
+}

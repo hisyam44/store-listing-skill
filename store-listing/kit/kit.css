@@ -1,0 +1,262 @@
+/* Store-listing design kit.
+ *
+ * Units: 1rem = 1% of the image's SHORT side, so one design scales to every store size
+ * (1080x1920, 1320x2868, 2064x2752, 1024x500 ...). Inside .stage, cqw/cqh are % of the stage.
+ * Brand tokens are the variables below: override them in the design file's <style>.
+ * Reference: references/design.md.
+ */
+:root {
+  --bg: #ffffff;
+  --ink: #15151a;
+  --muted: color-mix(in srgb, var(--ink) 64%, transparent);
+  --accent: #ff5a3c;
+  --accent-2: #ff9a3c;
+  --on-accent: #ffffff;
+  --soft: color-mix(in srgb, var(--accent) 12%, white);
+  --font-display: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-display);
+  --pad: 7;          /* outer padding in rem */
+  --h1: 9.6rem;      /* headline */
+  --sub: 4.6rem;     /* subline */
+  --dw: 80;          /* device width, % of the stage width */
+  --dh: 100;         /* device height cap, % of the stage height */
+  --chip-bg: #ffffff;    /* chips, bubbles, panels: fixed here so slides that flip --ink stay readable */
+  --chip-ink: #15151a;
+  --shadow: 0 2.2rem 6rem rgba(12, 12, 30, .22);
+  --device-shadow: 0 4cqw 10cqw rgba(10, 10, 25, .30);
+}
+
+html { font-size: 1vmin; -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+html, body { margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: none; }
+
+/* ------------------------------------------------------------------ slide */
+.slide {
+  position: relative; width: 100vw; height: 100vh; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 4rem; line-height: 1.25;
+  container-type: size; isolation: isolate;
+}
+html.kit-board .slide, html.kit-render .slide:not(.kit-active) { display: none !important; }
+
+/* ------------------------------------------------------------------ caption */
+.caption {
+  position: relative; z-index: 3; flex: none;
+  padding: calc(var(--pad) * 1.45rem) calc(var(--pad) * 1rem) 0;
+  text-align: center;
+}
+.caption h1, .caption .title {
+  margin: 0; font-family: var(--font-display); font-size: var(--h1); font-weight: 800;
+  line-height: 1.03; letter-spacing: -0.025em; text-wrap: balance;
+}
+.caption p {
+  margin: 2.4rem auto 0; max-width: 92%;
+  font-size: var(--sub); font-weight: 500; line-height: 1.25; color: var(--muted); text-wrap: balance;
+}
+.caption .eyebrow {
+  display: inline-block; margin-bottom: 2.6rem;
+  font: 700 3.4rem/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent);
+}
+.accent { color: var(--accent); }
+.mark { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--accent) 38%, transparent) 60% 92%, transparent 92%); padding: 0 .08em; }
+
+/* ------------------------------------------------------------------ stage + devices */
+.stage {
+  position: relative; z-index: 2; flex: 1 1 0; min-height: 0;
+  display: flex; align-items: center; justify-content: center;
+  padding-top: calc(var(--pad) * 1rem);
+  container-type: size;
+}
+.device {
+  position: relative; flex: none;
+  aspect-ratio: var(--ar, .46);
+  width: min(calc(var(--dw) * 1cqw), calc(var(--dh) * 1cqh * var(--ar, .46)));
+  container-type: inline-size;
+}
+/* bleed: a device big enough to run off the bottom edge (top edge in .layout-bottom) on every
+   aspect ratio: at least --dw wide, and tall enough to overflow the stage by ~15%. */
+.device.bleed {
+  width: clamp(calc(var(--dw) * 1cqw), calc(var(--bleed, 115) * 1cqh * var(--ar, .46)), calc(var(--bleed-max, 94) * 1cqw));
+  align-self: flex-start;
+}
+.layout-bottom .device.bleed { align-self: flex-end; }
+
+.dv-body { position: absolute; inset: 0; background: var(--dv-body, transparent); }
+.dv-card .dv-body, .dv-browser .dv-body { box-shadow: var(--device-shadow); }
+.dv-browser .dv-body { background: #e8e8ed; }
+.dv-screen { position: absolute; overflow: hidden; container-type: inline-size; }
+.dv-shot { position: absolute; left: 0; right: 0; bottom: 0; }
+.dv-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.dv-missing, img.dv-missing {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: repeating-linear-gradient(45deg, #e6e6ec 0 2cqw, #f4f4f8 2cqw 4cqw);
+  color: #8a8a96; font: 600 5cqw/1.2 system-ui, sans-serif;
+}
+.dv-island { position: absolute; left: 50%; transform: translateX(-50%); background: #000; border-radius: 99cqw; z-index: 3; }
+.dv-hole { position: absolute; left: 50%; transform: translateX(-50%); background: #050506; border-radius: 50%; z-index: 3; }
+.dv-cam { position: absolute; border-radius: 50%; background: radial-gradient(circle at 40% 38%, #3b4157, #07070a 62%); }
+.dv-home { position: absolute; left: 50%; bottom: 1.9cqw; width: 32cqw; height: 1.15cqw; transform: translateX(-50%); border-radius: 1cqw; z-index: 3; }
+.dv-over { position: absolute; inset: 0; z-index: 5; }
+.dv-bar { position: absolute; display: flex; align-items: center; gap: .7cqw; padding: 0 1.4cqw; background: #e8e8ed; }
+.dv-bar i { width: 1cqw; height: 1cqw; border-radius: 50%; background: #ff5f57; }
+.dv-bar i:nth-child(2) { background: #febc2e; }
+.dv-bar i:nth-child(3) { background: #28c840; }
+.dv-bar span { flex: 1; height: 56%; margin: 0 20cqw; border-radius: 99cqw; background: #fff; }
+
+/* status bars: always clean (9:41, full signal, wifi and battery) */
+.dv-status { position: absolute; left: 0; right: 0; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; white-space: nowrap; }
+.dv-status svg { display: block; width: auto; fill: currentColor; }
+.sb-icons { display: flex; align-items: center; }
+.sb-ios { padding: 0 7.6cqw 0 13cqw; font: 600 3.9cqw/1 -apple-system, "SF Pro Text", system-ui, sans-serif; letter-spacing: -.01em; }
+.sb-ios .sb-icons { gap: 1.5cqw; }
+.sb-ios svg { height: 2.75cqw; }
+.sb-ios svg:last-child { height: 2.95cqw; }
+.sb-ios-tablet { padding: 0 2.2cqw; font: 600 1.3cqw/1 -apple-system, "SF Pro Text", system-ui, sans-serif; }
+.sb-ios-tablet .sb-icons { gap: .55cqw; }
+.sb-ios-tablet svg { height: 1cqw; }
+.sb-date { font-weight: 500; margin-left: .3em; }
+.sb-android { padding: 0 6cqw; font: 500 3.5cqw/1 Roboto, "Google Sans", system-ui, sans-serif; }
+.sb-android .sb-icons { gap: 1.3cqw; }
+.sb-android svg { height: 3.2cqw; }
+.dv-tablet .sb-android { padding: 0 2.4cqw; font-size: 1.5cqw; }
+.dv-tablet .sb-android svg { height: 1.4cqw; }
+.dv-tablet .sb-android .sb-icons { gap: .6cqw; }
+
+/* arrangements */
+.tilt-left { transform: rotate(-7deg); }
+.tilt-right { transform: rotate(7deg); }
+.back { z-index: 0; transform: scale(.9); }
+/* duo: two overlapping devices, the second one lower; they grow on tall canvases */
+.stage.duo { gap: 0; align-items: flex-start; }
+.stage.duo .device { width: clamp(42cqw, calc(80cqh * var(--ar, .46)), 50cqw); }
+.stage.duo .device:first-child { margin-top: 2cqh; }
+.stage.duo .device + .device { margin-left: -8cqw; margin-top: 14cqh; }
+
+/* ------------------------------------------------------------------ layouts */
+.layout-bottom { flex-direction: column-reverse; }
+.layout-bottom .caption { padding: 0 calc(var(--pad) * 1rem) calc(var(--pad) * 1.45rem); }
+.layout-bottom .stage { padding: calc(var(--pad) * 1.2rem) 0 calc(var(--pad) * .8rem); }
+.layout-bottom .stage:has(.bleed) { padding-top: 0; }
+
+/* full-bleed capture (games, immersive apps) with the caption on a scrim */
+.layout-full .stage { position: absolute; inset: 0; padding: 0; z-index: 0; }
+.bg-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.layout-full .caption {
+  position: absolute; left: 0; right: 0; top: 0; padding-bottom: 18rem;
+  color: var(--on-scrim, #fff); background: linear-gradient(var(--scrim, rgba(0, 0, 0, .55)), transparent);
+}
+.layout-full .caption p { color: inherit; opacity: .92; }
+.layout-full.caption-bottom .caption {
+  top: auto; bottom: 0; padding-top: 18rem; padding-bottom: calc(var(--pad) * 1.6rem);
+  background: linear-gradient(transparent, var(--scrim, rgba(0, 0, 0, .6)));
+}
+
+/* caption beside the device: explicit, and automatic on landscape screenshot targets */
+.layout-split,
+html[data-orientation="landscape"] .slide:where(:not(.feature, .layout-full, .layout-free)) { flex-direction: row; }
+.layout-split .caption,
+html[data-orientation="landscape"] .slide:where(:not(.feature, .layout-full, .layout-free)) .caption {
+  width: 42%; align-self: center; text-align: left; padding: 0 0 0 calc(var(--pad) * 1.5rem);
+}
+.layout-split .caption p,
+html[data-orientation="landscape"] .slide:where(:not(.feature, .layout-full, .layout-free)) .caption p { margin-left: 0; }
+.layout-split .stage,
+html[data-orientation="landscape"] .slide:where(:not(.feature, .layout-full, .layout-free)) .stage {
+  padding: calc(var(--pad) * 1rem) calc(var(--pad) * 1rem) calc(var(--pad) * 1rem) 3rem;
+}
+
+/* hand-placed: children are positioned by the author */
+.layout-free { display: block; }
+
+/* ------------------------------------------------------------------ decorations */
+.chip {
+  position: absolute; z-index: 6; display: inline-flex; align-items: center; gap: 1.2rem;
+  padding: 1.8rem 3.4rem; border-radius: 99rem; white-space: nowrap;
+  background: var(--chip-bg); color: var(--chip-ink); box-shadow: var(--shadow);
+  font: 700 4.2rem/1 var(--font-display);
+}
+.chip.solid { background: var(--accent); color: var(--on-accent); }
+.badge {
+  position: absolute; z-index: 6; display: inline-flex; align-items: center; gap: 1rem;
+  padding: 1.3rem 2.6rem; border-radius: 99rem; white-space: nowrap;
+  background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow);
+  font: 700 3.4rem/1 var(--font-display);
+}
+/* a badge inside a caption flows above the headline instead of floating */
+.caption .badge { position: static; margin-bottom: 3rem; }
+.sticker {
+  position: absolute; z-index: 6; display: grid; place-items: center;
+  width: 27rem; aspect-ratio: 1; padding: 4.2rem; text-align: center;
+  background: var(--sticker-bg, #fff); color: var(--sticker-ink, var(--accent));
+  font: 800 3.7rem/1.04 var(--font-display); transform: rotate(-9deg);
+  clip-path: polygon(50% 0%, 59.5% 14.6%, 75% 6.7%, 76% 24%, 93.3% 25%, 85.4% 40.5%, 100% 50%, 85.4% 59.5%, 93.3% 75%, 76% 76%, 75% 93.3%, 59.5% 85.4%, 50% 100%, 40.5% 85.4%, 25% 93.3%, 24% 76%, 6.7% 75%, 14.6% 59.5%, 0% 50%, 14.6% 40.5%, 6.7% 25%, 24% 24%, 25% 6.7%, 40.5% 14.6%);
+}
+.bubble {
+  position: absolute; z-index: 6; display: grid; place-items: center;
+  width: 17rem; aspect-ratio: 1; border-radius: 50%;
+  background: var(--chip-bg); color: var(--chip-ink); box-shadow: var(--shadow); font-size: 8rem; line-height: 1;
+}
+.callout {
+  position: absolute; z-index: 6; border-radius: 3rem; background-repeat: no-repeat; background-color: #fff;
+  box-shadow: 0 3rem 8rem rgba(0, 0, 0, .28), 0 0 0 .7rem #fff;
+}
+.panel { position: absolute; z-index: 6; padding: 3.4rem 4rem; border-radius: 4rem; background: var(--chip-bg); color: var(--chip-ink); box-shadow: var(--shadow); }
+.blob { position: absolute; z-index: 0; width: 80rem; aspect-ratio: 1; border-radius: 50%; background: var(--accent); filter: blur(14rem); opacity: .35; pointer-events: none; }
+.dots {
+  position: absolute; z-index: 0; width: 42rem; height: 42rem; pointer-events: none;
+  background-image: radial-gradient(var(--dots, rgba(255, 255, 255, .5)) 22%, transparent 25%); background-size: 4rem 4rem;
+}
+.logo { display: block; width: 24rem; height: auto; }
+.app-icon { display: block; width: 24rem; aspect-ratio: 1; border-radius: 22.37%; box-shadow: var(--shadow); object-fit: cover; }
+
+/* a big figure as the headline: <div class="stat"><b>12</b><span>day streak</span></div> */
+.stat { display: block; }
+.stat b { display: block; font: 800 24rem/.88 var(--font-display); letter-spacing: -.05em; color: var(--accent); }
+.stat span { display: block; margin-top: 2.4rem; font: 700 5.4rem/1.12 var(--font-display); color: var(--ink); text-wrap: balance; }
+
+/* panoramic background layer (see kit.js panLayer) */
+body > .pan-bg { display: none; }
+.slide > .pan-bg {
+  position: absolute; top: 0; bottom: 0; z-index: 0; overflow: hidden; pointer-events: none;
+  left: calc(-100vw * var(--pan-index, 0)); width: calc(100vw * var(--pan-count, 1));
+}
+
+/* per-store / per-device content */
+html:not([data-store="app-store"]) .only-appstore,
+html:not([data-store="google-play"]) .only-play,
+html:not([data-form="phone"]) .only-phone,
+html:not([data-form="tablet"]) .only-tablet,
+html:not([data-orientation="landscape"]) .only-landscape,
+html:not([data-orientation="portrait"]) .only-portrait { display: none !important; }
+
+/* ------------------------------------------------------------------ feature graphic (1024x500) */
+.feature { flex-direction: row; align-items: center; padding: 0 0 0 10rem; }
+.feature .brand { position: relative; z-index: 3; flex: 0 0 47%; display: flex; flex-direction: column; align-items: flex-start; gap: 3.6rem; }
+.feature .brand h1 { margin: 0; font: 800 15rem/.95 var(--font-display); letter-spacing: -.03em; text-wrap: balance; }
+.feature .brand p { margin: 0; font: 600 6rem/1.15 var(--font-body); text-wrap: balance; opacity: .9; }
+.feature .brand .app-icon { width: 26rem; }
+.feature .visual { position: relative; z-index: 2; flex: 1; align-self: stretch; container-type: size; }
+.feature .visual .device { position: absolute; width: 42cqh; }
+.feature .fan .device:nth-child(1) { left: 2%; top: 22%; transform: rotate(-11deg); }
+.feature .fan .device:nth-child(2) { left: 31%; top: 9%; z-index: 2; }
+.feature .fan .device:nth-child(3) { left: 60%; top: 22%; transform: rotate(11deg); }
+.feature.centered { justify-content: center; padding: 0; text-align: center; }
+.feature.centered .brand { flex: none; align-items: center; }
+
+/* ------------------------------------------------------------------ board (preview page) */
+html.kit-board { font-size: 16px; }
+html.kit-board, html.kit-board body { background: #17171a; color: #e4e4e7; font: 14px/1.4 system-ui, sans-serif; }
+.kit-boardui header {
+  position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+  padding: 12px 20px; background: #0e0e11; border-bottom: 1px solid #2a2a30;
+}
+.kit-boardui header span { color: #a1a1aa; }
+.kit-boardui select { font: inherit; padding: 4px 8px; background: #222226; color: #eee; border: 1px solid #444; border-radius: 6px; }
+.kit-boardui main { display: flex; flex-wrap: wrap; gap: 22px; padding: 22px; align-items: flex-start; }
+.kit-boardui figure { margin: 0; }
+.kit-cell { overflow: hidden; border-radius: 10px; background: #000; box-shadow: 0 4px 22px rgba(0, 0, 0, .45); }
+.kit-cell iframe { display: block; border: 0; transform-origin: 0 0; }
+.kit-boardui figcaption { padding-top: 8px; }
+.kit-boardui figcaption a { color: #a1a1aa; text-decoration: none; font-size: 12px; }

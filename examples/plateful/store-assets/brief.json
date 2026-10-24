@@ -1,0 +1,18 @@
+{
+  "name": "Plateful",
+  "tagline": "Recipes, meal plans and groceries. One app.",
+  "accent": "#ff5a36",
+  "accent2": "#ffc55c",
+  "font": "Plus Jakarta Sans",
+  "icon": "icon.svg",
+  "style": "bold-gradient",
+  "featureStyle": "brand-fan",
+  "targets": ["appstore-iphone-6.9", "appstore-iphone-6.3", "play-phone", "appstore-ipad-13", "play-tablet"],
+  "slides": [
+    { "shot": "today", "headline": "Plateful", "sub": "Recipes, meal plans and groceries. One app.", "sticker": "Save, plan, shop, cook", "chips": ["🔥 12-day streak"] },
+    { "shot": "recipes", "headline": "Every recipe,", "accent": "one place", "chips": ["🥞 Breakfast", "🥗 Vegan"], "eyebrow": "Recipe box" },
+    { "shot": "plan", "headline": "Plan your week", "accent": "in minutes", "eyebrow": "Meal planner", "stat": { "value": "1,160", "label": "kcal planned for today" } },
+    { "shot": "recipe", "headline": "Cook with", "accent": "zero guesswork", "eyebrow": "Step by step" },
+    { "shot": "shop", "headline": "Your grocery list,", "accent": "written for you", "eyebrow": "Shopping list", "stat": { "value": "11", "label": "items, sorted by aisle" } }
+  ]
+}

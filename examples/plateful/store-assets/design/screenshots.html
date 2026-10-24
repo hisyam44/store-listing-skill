@@ -1,0 +1,115 @@
+<!doctype html>
+<!-- data-play-frame: card (frameless rounded screen, Google's recommendation) | device | none
+     data-appstore-frame: device (iPhone / iPad frame) | card | none -->
+<html lang="en" data-play-frame="card" data-appstore-frame="device">
+<head>
+<meta charset="utf-8">
+<title>Plateful · store screenshots</title>
+<!-- The store images this file renders to (node render.mjs targets lists them all). -->
+<meta name="store-targets" content="appstore-iphone-6.9 appstore-iphone-6.3 play-phone appstore-ipad-13 play-tablet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=block">
+<link rel="stylesheet" href="kit/kit.css">
+<style>
+  :root {
+    --accent: #ff5a36;
+    --accent-2: #ffc55c;
+    --ink: #15151a;
+    --bg: #ffffff;
+    --font-display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  /* Hero: brand gradient with light text. Set --muted together with --ink. */
+  .hero { --bg: linear-gradient(165deg, var(--accent) 0%, var(--accent-2) 100%); --ink: #fff; --muted: rgba(255, 255, 255, .9); }
+  .hero .caption h1 { font-size: 12rem; }
+  /* Benefit slides: a soft tint of the brand colour. */
+  .soft { --bg: var(--soft); }
+  .sticker { --sticker-bg: #fff; --sticker-ink: var(--accent); }
+  /* Callouts: positioned against the device box; tablets show a different part of the layout. */
+  .callout.ingredients { left: -3%; width: 106%; top: 50%; }
+  .callout.week { left: -3%; width: 106%; top: 14%; }
+  html[data-form="tablet"] .callout.ingredients { left: 36%; width: 62%; top: 30%; }
+  html[data-form="tablet"] .callout.week { left: -4%; width: 108%; top: 9%; }
+</style>
+</head>
+<body>
+
+<!-- 1. Hero: the promise + the home screen. -->
+<section class="slide hero" data-name="hero">
+  <div class="caption">
+    <h1 data-fit="1">Plateful</h1>
+    <p data-fit="2">Recipes, meal plans and groceries. One app.</p>
+  </div>
+  <div class="stage">
+    <div class="device bleed" data-shot="today">
+      <span class="sticker" style="right: -5%; top: 5%;">Save, plan, shop, cook</span>
+      <span class="chip" style="left: -12%; top: 47%;">🔥 12-day streak</span>
+    </div>
+  </div>
+  <div class="dots" style="left: -8rem; top: 38%;"></div>
+</section>
+
+<!-- 2. Recipes library. -->
+<section class="slide soft" data-name="recipes">
+  <div class="caption">
+    <h1 data-fit="2">Every recipe,<br><span class="accent">one place</span></h1>
+  </div>
+  <div class="stage">
+    <div class="device bleed" data-shot="recipes">
+      <span class="chip" style="left: -10%; top: 30%;">🥞 Breakfast</span>
+      <span class="chip solid" style="right: -9%; top: 52%;">🥗 Vegan</span>
+      <span class="bubble" style="right: -7%; top: 12%;">❤️</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Recipe detail with a magnified ingredients callout. -->
+<section class="slide soft" data-name="recipe">
+  <div class="caption">
+    <h1 data-fit="2">Cook with<br><span class="accent">zero guesswork</span></h1>
+  </div>
+  <div class="stage">
+    <div class="device bleed" data-shot="recipe">
+      <div class="callout ingredients" data-shot="recipe" data-crop="0 0.47 1 0.22" data-crop-tablet="0.53 0.26 0.45 0.15"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Planner with the week strip pulled out. -->
+<section class="slide soft" data-name="plan">
+  <div class="caption">
+    <h1 data-fit="2">Plan your week<br><span class="accent">in minutes</span></h1>
+  </div>
+  <div class="stage">
+    <div class="device" data-shot="plan">
+      <div class="callout week" data-shot="plan" data-crop="0.02 0.095 0.96 0.1" data-crop-tablet="0.03 0.08 0.94 0.065"></div>
+      <span class="chip solid" style="right: -6%; top: 64%;">1,160 / 1,600 kcal</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Shopping list, caption at the bottom for rhythm. -->
+<section class="slide hero layout-bottom" data-name="shop">
+  <div class="caption">
+    <h1 data-fit="2">Your grocery list,<br>written for you</h1>
+  </div>
+  <div class="stage">
+    <div class="device" data-shot="shop">
+      <span class="chip" style="left: -10%; top: 22%;">✅ Built from your plan</span>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Two screens side by side (phones only). -->
+<section class="slide soft" data-name="together" data-skip="*ipad* play-tablet*">
+  <div class="caption">
+    <h1 data-fit="2">From recipe<br><span class="accent">to table</span></h1>
+  </div>
+  <div class="stage duo">
+    <div class="device tilt-left" data-shot="recipes"></div>
+    <div class="device tilt-right" data-shot="recipe"></div>
+  </div>
+</section>
+
+<script src="kit/kit.js"></script>
+</body>
+</html>

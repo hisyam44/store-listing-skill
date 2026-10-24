@@ -1,0 +1,14 @@
+{
+  "devices": ["phone", "tablet"],
+  "localStorage": { "plateful.done": "[\"Lemons\",\"Oat milk\",\"Cucumber\",\"Avocados\"]" },
+  "shots": [
+    { "name": "today", "path": "/#/" },
+    { "name": "recipes", "path": "/#/recipes" },
+    { "name": "recipe", "path": "/#/recipe/ramen" },
+    { "name": "plan", "path": "/#/plan" },
+    { "name": "shop", "path": "/#/shop", "actions": [
+      { "do": "tap", "selector": "[data-item=\"Free-range eggs\"]" },
+      { "do": "wait", "ms": 300 }
+    ]}
+  ]
+}

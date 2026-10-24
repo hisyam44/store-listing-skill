@@ -1,0 +1,99 @@
+{
+  "devices": [
+    "phone",
+    "phone-android"
+  ],
+  "fullscreen": true,
+  "deviceOptions": {
+    "phone-android": {
+      "viewport": {
+        "width": 360,
+        "height": 640
+      }
+    },
+    "desktop": {
+      "viewport": {
+        "width": 1024,
+        "height": 640
+      },
+      "deviceScaleFactor": 2
+    }
+  },
+  "shots": [
+    {
+      "name": "title",
+      "path": "/",
+      "actions": [
+        {
+          "do": "wait",
+          "ms": 1200
+        }
+      ]
+    },
+    {
+      "name": "play",
+      "path": "/",
+      "actions": [
+        {
+          "do": "tap",
+          "at": [
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "do": "wait",
+          "ms": 1500
+        },
+        {
+          "do": "burst",
+          "name": "play",
+          "count": 6,
+          "interval": 450
+        }
+      ]
+    },
+    {
+      "name": "feature-art",
+      "devices": [
+        "desktop"
+      ],
+      "path": "/",
+      "actions": [
+        {
+          "do": "click",
+          "at": [
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "do": "wait",
+          "ms": 2600
+        }
+      ]
+    },
+    {
+      "name": "gameplay",
+      "type": "video",
+      "devices": [
+        "phone"
+      ],
+      "path": "/",
+      "actions": [
+        {
+          "do": "tap",
+          "at": [
+            0.5,
+            0.5
+          ]
+        },
+        {
+          "do": "wait",
+          "ms": 9000
+        }
+      ],
+      "deviceScaleFactor": 2
+    }
+  ]
+}

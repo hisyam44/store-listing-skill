@@ -1,0 +1,11 @@
+{
+  "name": "Plateful",
+  "short_name": "Plateful",
+  "description": "Save recipes, plan your week and shop smarter.",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#ff5a36",
+  "background_color": "#fff8f3",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

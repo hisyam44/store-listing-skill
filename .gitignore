@@ -1,0 +1,16 @@
+node_modules/
+.DS_Store
+
+# Example outputs: keep the inputs (shot plans, captures, designs) and the final images,
+# drop runtime state, previews and the per-project kit copies.
+examples/*/store-assets/.run/
+examples/*/store-assets/out/_preview/
+examples/*/store-assets/out/report.json
+examples/*/store-assets/design/kit/
+examples/*/store-assets/captures/probe.png
+examples/*/store-assets/captures/*.mp4
+examples/*/store-assets/captures/*/*.mp4
+examples/*/store-assets/out/_gallery/
+examples/*/store-assets/design/_gallery*.html
+examples/*/store-assets/inventory.json
+examples/*/store-assets/out/

@@ -1,0 +1,1 @@
+arcade,casual,jump,jumping,hopper,platform,endless,runner,bird,island,score,offline,reflex

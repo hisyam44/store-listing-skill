@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sky Hop · feature graphic</title>
+<meta name="store-targets" content="play-feature">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&display=block">
+<link rel="stylesheet" href="kit/kit.css">
+<style>
+  :root { --ink: #fff; --accent-2: #ffc75f; --font-display: "Lilita One", system-ui, sans-serif; }
+  /* Alto's-style: the game's own art full-bleed, the name centred. */
+  .feature .brand h1 { font-size: 26rem; font-weight: 400; -webkit-text-stroke: 2rem #1c1046; paint-order: stroke fill; text-shadow: 0 1.6rem 0 #1c1046; }
+  .feature .brand p { font: 700 6.4rem/1.1 system-ui, sans-serif; text-shadow: 0 .6rem 2rem rgba(0,0,0,.4); }
+  .slide.feature { flex-direction: row-reverse; padding: 0 6rem 0 0; }
+  .feature .brand { flex-basis: 52%; align-items: center; text-align: center; }
+  .feature .shade { position: absolute; inset: 0; z-index: 1; background: radial-gradient(ellipse at 72% 50%, rgba(28,16,70,.45), transparent 60%); }
+</style>
+</head>
+<body>
+<section class="slide feature" data-name="feature">
+  <img class="bg-shot" data-shot="feature-art" data-device="desktop" data-focus="50% 100%" alt="">
+  <div class="shade"></div>
+  <div class="brand">
+    <h1>Sky Hop</h1>
+    <p>One tap. Endless sky.</p>
+  </div>
+</section>
+<script src="kit/kit.js"></script>
+</body>
+</html>

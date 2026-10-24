@@ -1,0 +1,193 @@
+{
+  "baseUrl": "http://localhost:8080/",
+  "fps": 30,
+  "capturedAt": "2026-10-23T17:46:23.896Z",
+  "devices": {
+    "phone": {
+      "kind": "phone",
+      "style": "ios",
+      "viewport": {
+        "width": 440,
+        "height": 894
+      },
+      "deviceScaleFactor": 3,
+      "statusBar": 62,
+      "orientation": "portrait"
+    },
+    "tablet": {
+      "kind": "tablet",
+      "style": "ios",
+      "viewport": {
+        "width": 1032,
+        "height": 1352
+      },
+      "deviceScaleFactor": 2,
+      "statusBar": 24,
+      "orientation": "portrait"
+    }
+  },
+  "captures": [
+    {
+      "name": "today",
+      "type": "screenshot",
+      "file": "phone/today.png",
+      "width": 1320,
+      "height": 2682,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 62,
+      "viewport": {
+        "width": 440,
+        "height": 894
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "today",
+      "type": "screenshot",
+      "file": "tablet/today.png",
+      "width": 2064,
+      "height": 2704,
+      "device": "tablet",
+      "deviceKind": "tablet",
+      "deviceStyle": "ios",
+      "statusBar": 24,
+      "viewport": {
+        "width": 1032,
+        "height": 1352
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "recipes",
+      "type": "screenshot",
+      "file": "phone/recipes.png",
+      "width": 1320,
+      "height": 2682,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 62,
+      "viewport": {
+        "width": 440,
+        "height": 894
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "recipes",
+      "type": "screenshot",
+      "file": "tablet/recipes.png",
+      "width": 2064,
+      "height": 2704,
+      "device": "tablet",
+      "deviceKind": "tablet",
+      "deviceStyle": "ios",
+      "statusBar": 24,
+      "viewport": {
+        "width": 1032,
+        "height": 1352
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "recipe",
+      "type": "screenshot",
+      "file": "phone/recipe.png",
+      "width": 1320,
+      "height": 2682,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 62,
+      "viewport": {
+        "width": 440,
+        "height": 894
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "recipe",
+      "type": "screenshot",
+      "file": "tablet/recipe.png",
+      "width": 2064,
+      "height": 2704,
+      "device": "tablet",
+      "deviceKind": "tablet",
+      "deviceStyle": "ios",
+      "statusBar": 24,
+      "viewport": {
+        "width": 1032,
+        "height": 1352
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "plan",
+      "type": "screenshot",
+      "file": "phone/plan.png",
+      "width": 1320,
+      "height": 2682,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 62,
+      "viewport": {
+        "width": 440,
+        "height": 894
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "plan",
+      "type": "screenshot",
+      "file": "tablet/plan.png",
+      "width": 2064,
+      "height": 2704,
+      "device": "tablet",
+      "deviceKind": "tablet",
+      "deviceStyle": "ios",
+      "statusBar": 24,
+      "viewport": {
+        "width": 1032,
+        "height": 1352
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "shop",
+      "type": "screenshot",
+      "file": "phone/shop.png",
+      "width": 1320,
+      "height": 2682,
+      "device": "phone",
+      "deviceKind": "phone",
+      "deviceStyle": "ios",
+      "statusBar": 62,
+      "viewport": {
+        "width": 440,
+        "height": 894
+      },
+      "orientation": "portrait"
+    },
+    {
+      "name": "shop",
+      "type": "screenshot",
+      "file": "tablet/shop.png",
+      "width": 2064,
+      "height": 2704,
+      "device": "tablet",
+      "deviceKind": "tablet",
+      "deviceStyle": "ios",
+      "statusBar": 24,
+      "viewport": {
+        "width": 1032,
+        "height": 1352
+      },
+      "orientation": "portrait"
+    }
+  ],
+  "failures": [],
+  "consoleErrors": []
+}

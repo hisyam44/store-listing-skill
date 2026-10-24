@@ -1,0 +1,17 @@
+{
+  "name": "Sky Hop",
+  "tagline": "One tap. Endless sky.",
+  "accent": "#ff6f91",
+  "accent2": "#ffc75f",
+  "font": "Lilita One",
+  "style": "game-cinematic",
+  "featureStyle": "art-title",
+  "featureArt": "feature-art",
+  "targets": ["appstore-iphone-6.9", "appstore-iphone-6.3", "play-phone"],
+  "slides": [
+    { "shot": "play-03", "headline": "One tap.", "accent": "Endless sky." },
+    { "shot": "play-05", "headline": "Hop across", "accent": "floating islands", "focus": "50% 60%" },
+    { "shot": "play-01", "headline": "Grab every", "accent": "shining star", "chips": ["⭐ +10 per star"] },
+    { "shot": "title", "headline": "Beat your", "accent": "best score" }
+  ]
+}
