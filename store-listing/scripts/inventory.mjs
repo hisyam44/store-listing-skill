@@ -57,8 +57,9 @@ const RULES = [
   ['reminders', 'Reminders / local notifications', { deps: ['@capacitor/local-notifications', 'expo-notifications'], code: [/LocalNotifications\.schedule/, /new Notification\(/, /Notification\.requestPermission/] }],
   ['offline', 'Works offline (service worker / local data)', { deps: ['vite-plugin-pwa', 'workbox-*', '@angular/service-worker', 'next-pwa', '@vite-pwa/*'], code: [/serviceWorker\.register/] }],
   ['local-storage', 'Saves data on the device', { deps: ['@capacitor/preferences', '@capacitor-community/sqlite', 'dexie', 'idb', 'localforage', '@ionic/storage', 'pouchdb*'], code: [/localStorage\.setItem/, /indexedDB\.open/] }],
-  ['accounts', 'Accounts / sign-in', { deps: ['firebase', '@firebase/auth', '@supabase/supabase-js', 'aws-amplify', '@auth0/*', 'next-auth', '@clerk/*', '@capacitor-firebase/authentication', '@capacitor-community/apple-sign-in', '@codetrix-studio/capacitor-google-auth'], code: [/signInWith\w+\(/, /createUserWithEmailAndPassword/] }],
-  ['sync', 'Cloud sync across devices', { deps: ['firebase', '@supabase/supabase-js', 'pouchdb*', '@react-native-firebase/firestore', 'convex', '@instantdb/*', 'replicache'], code: [/onSnapshot\(/, /\.channel\(["']/] }],
+  // Plain `firebase` is often there for push or analytics only, so it needs auth/firestore code.
+  ['accounts', 'Accounts / sign-in', { deps: ['@firebase/auth', '@supabase/supabase-js', 'aws-amplify', '@auth0/*', 'next-auth', '@clerk/*', '@capacitor-firebase/authentication', '@capacitor-community/apple-sign-in', '@codetrix-studio/capacitor-google-auth'], code: [/signInWith\w+\(/, /createUserWithEmailAndPassword/, /from\s+["']firebase\/auth["']/] }],
+  ['sync', 'Cloud sync across devices', { deps: ['@supabase/supabase-js', 'pouchdb*', '@react-native-firebase/firestore', 'convex', '@instantdb/*', 'replicache'], code: [/onSnapshot\(/, /\.channel\(["']/, /from\s+["']firebase\/(firestore|database)["']/] }],
   ['share', 'Share to other apps', { deps: ['@capacitor/share'], code: [/navigator\.share\(/, /Share\.share\(/] }],
   ['export', 'Export (PDF / CSV / files)', { deps: ['jspdf', 'pdfmake', 'html2pdf.js', 'papaparse', 'xlsx', 'exceljs', 'file-saver', '@capacitor/filesystem'], code: [/new Blob\(\[[^\]]*\][^)]*type:\s*["'](text\/csv|application\/pdf|application\/json)/, /download\s*=\s*["'`][^"'`]+\.(csv|pdf|json|txt)/] }],
   ['import', 'Import from files or other apps', { code: [/FileReader\(\)/, /\.readAsText\(/, /type=["']file["']/] }],
@@ -88,7 +89,7 @@ const RULES = [
 const MONEY = [
   ['ads', 'Ads', { deps: ['@capacitor-community/admob', 'admob-plus-cordova', 'cordova-plugin-admob*', 'react-native-google-mobile-ads', '@capacitor-community/appodeal', 'applovin*', 'unity-ads*'], code: [/adsbygoogle/, /AdMob\./, /googletag\./] }],
   ['iap', 'In-app purchases', { deps: ['cordova-plugin-purchase', '@revenuecat/purchases-capacitor', '@capgo/native-purchases', 'capacitor-plugin-purchase', 'react-native-iap', 'expo-in-app-purchases'], code: [/CdvPurchase|InAppPurchase|purchasePackage\(/] }],
-  ['subscriptions', 'Subscriptions', { deps: ['@revenuecat/purchases-capacitor'], code: [/subscription|entitlement|PAID_SUBSCRIPTION|\bpremium\b|\bpro plan\b/i] }],
+  ['subscriptions', 'Subscriptions', { deps: ['@revenuecat/purchases-capacitor'], code: [/PAID_SUBSCRIPTION|purchaseSubscription|PRODUCT_TYPE\.SUBS|ProductType\.SUBS|productType:\s*["']subs["']|subscriptionPeriod|autoRenew|\b(monthly|yearly|annual) (plan|subscription)\b|\bpro plan\b/i] }],
 ];
 
 const depMatch = (want) => Object.keys(deps).filter((d) => (want.endsWith('*') ? d.startsWith(want.slice(0, -1)) : d === want));
@@ -128,6 +129,14 @@ function locales() {
   for (const f of files) {
     const m = rel(f).match(/(?:^|\/)(?:locales?|i18n|lang|translations|messages)\/([a-z]{2}(?:[-_][A-Za-z]{2,4})?)(?:\/|\.json$|\.js$|\.ts$|\.ya?ml$)/);
     if (m) found.add(m[1].replace('_', '-'));
+  }
+  // One i18n module holding every language as an object: `en: { ... }, id: { ... }`.
+  if (!found.size) {
+    for (const [f, t] of texts) {
+      if (!t || !/(?:^|\/)(?:i18n|locales?|translations|lang|strings)\.(?:[jt]sx?|mjs)$/.test(rel(f))) continue;
+      const keys = new Set([...t.matchAll(/^\s{0,4}["']?([a-z]{2}(?:[-_][A-Z]{2})?)["']?\s*:\s*\{/gm)].map((m) => m[1].replace('_', '-')));
+      if (keys.size >= 2) keys.forEach((k) => found.add(k));
+    }
   }
   return [...found].sort();
 }

@@ -644,7 +644,9 @@ async function main() {
 
   const opts = {
     baseUrl,
-    out: path.resolve(flag('out') || plan.out || (planPath ? path.join(path.dirname(planPath), 'captures') : 'store-assets/captures')),
+    // --out is relative to the working directory; the plan's "out" to the plan file.
+    out: flag('out') ? path.resolve(flag('out'))
+      : path.resolve(planPath ? path.dirname(planPath) : 'store-assets', plan.out || 'captures'),
     fps: plan.fps ?? 30,
     crf: plan.crf ?? 17,
     jpegQuality: plan.jpegQuality ?? 92,

@@ -115,9 +115,16 @@ export function loadBrief(projectDir, overrides = {}) {
 
   let targets = overrides.targets || file.targets;
   if (!targets) {
-    targets = ['appstore-iphone-6.9', 'appstore-iphone-6.3', 'play-phone'];
-    if (caps.hasTablet || native.iosSupportsIpad) targets.push('appstore-ipad-13');
-    if (caps.hasTablet) targets.push('play-tablet');
+    // Only the stores the project ships to: a native wrapper with just android/ (or just ios/)
+    // gets that store's slots; without a wrapper (PWA, TWA to be), both.
+    const wrapped = !!native.wrapper && (native.ios || native.android);
+    const ios = !wrapped || !!native.ios;
+    const play = !wrapped || !!native.android;
+    targets = [];
+    if (ios) targets.push('appstore-iphone-6.9', 'appstore-iphone-6.3');
+    if (play) targets.push('play-phone');
+    if (ios && (caps.hasTablet || native.iosSupportsIpad)) targets.push('appstore-ipad-13');
+    if (play && caps.hasTablet) targets.push('play-tablet');
   }
   if (typeof targets === 'string') targets = targets.split(/[\s,]+/).filter(Boolean);
 

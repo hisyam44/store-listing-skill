@@ -234,6 +234,15 @@ Patterns:
   caption on a band at the top or bottom, short verbs ("Dodge. Dash. Win."). The game logo goes
   on the first image. Captions at the top hide the HUD, so use `caption-bottom` or crop with
   `data-focus` when the score matters.
+- **Characters breaking the frame** (Kingdom Rush, Stardew Valley, Angry Birds 2): put the
+  game's cast on the slides, overlapping the gameplay card's edge. For pixel art, export the
+  sprites at native size from the game's own code or assets and scale them in CSS with
+  `image-rendering: pixelated` (`<img class="px" ...>` inside the `.device`, positioned in
+  `cqw`), with a hard drop shadow. Use the game's own font for captions when it's a display
+  font, and a background per world or zone, so the set changes colour as it goes.
+- **Phone-width UI on tablets:** when menus keep a phone-width column on a tablet, zoom into it
+  on tablet targets only, e.g.
+  `html[data-form="tablet"] .tz .dv-shot img { transform: scale(1.45) !important; }`.
 - **Panoramic sets:** one background spanning all images makes the gallery feel continuous.
   Put `<div class="pan-bg" data-pan="x">…</div>` once, outside the slides, and
   `data-pan="x"` on each slide. The kit clones it into every slide, shifted by the slide's

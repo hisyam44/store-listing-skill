@@ -240,8 +240,9 @@ function brandFromHtmlAndManifest(dir) {
     const t = readText(path.join(dir, p));
     if (!t) continue;
     out.title ||= t.match(/<title>([^<]+)<\/title>/i)?.[1]?.trim() || null;
-    out.description ||= t.match(/<meta\s+name=["']description["']\s+content=["']([^"']+)/i)?.[1] || null;
-    out.themeColor ||= t.match(/<meta\s+name=["']theme-color["']\s+content=["']([^"']+)/i)?.[1] || null;
+    // Match the closing quote of the same kind, so "don't" doesn't end the text.
+    out.description ||= t.match(/<meta\s+name=["']description["']\s+content=(["'])(.*?)\1/is)?.[2]?.trim() || null;
+    out.themeColor ||= t.match(/<meta\s+name=["']theme-color["']\s+content=(["'])(.*?)\1/is)?.[2]?.trim() || null;
   }
   for (const p of ['public/manifest.json', 'public/site.webmanifest', 'public/manifest.webmanifest', 'static/manifest.json', 'manifest.json', 'manifest.webmanifest', 'site.webmanifest']) {
     const j = readJson(path.join(dir, p));

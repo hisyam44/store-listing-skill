@@ -87,6 +87,19 @@ const PROMO = /(\bfree\b|\bdiscount|\bsale\b|\d+\s?% off|\bcheap(est)?\b|\blimit
 const CTA = /\b(download|install|get) (it )?(now|today|for free)\b/i;
 const OTHER = { play: /\b(iphone|ipad|ios|app store|apple watch|macos)\b/i, ios: /\b(android|google play|play store|galaxy|pixel|wear os)\b/i };
 const STOP = new Set('a an and are as at be but by can for from has have in into is it its of on or our so that the their this to with you your we will all more one any app apps also just get use make like over each every not out up when what which who how than then there these they them was were do does'.split(' '));
+// Function words of other listing languages, so the stuffing check counts content words only.
+const STOP_BY_LANG = {
+  id: 'dan yang di ke dari untuk dengan ini itu ada atau juga bisa akan tidak tiap setiap kamu kami anda mu nya dalam pada oleh jadi lalu saat sampai lebih semua satu sudah masih agar karena seperti para sebuah cuma hanya baru',
+  ms: 'dan yang di ke dari untuk dengan ini itu ada atau juga boleh akan tidak setiap anda kami dalam pada oleh jadi lalu semua satu sudah masih agar kerana seperti',
+  es: 'el la los las un una unos unas de del al y o en con por para que es su sus tu tus te se lo más como cada todo todos también pero sin sobre',
+  pt: 'o a os as um uma de do da dos das e ou em no na nos nas com por para que é seu sua seus suas você mais como cada todo todos também mas sem',
+  fr: 'le la les un une des de du et ou en dans avec par pour que qui est son sa ses vous votre vos plus comme chaque tout tous aussi mais sans sur au aux',
+  de: 'der die das ein eine einen dem den des und oder in im mit für von zu ist sie ihr ihre du dein deine mehr wie jede jeder alle auch aber ohne auf am',
+  it: 'il lo la i gli le un una di del della e o in con per che è suo sua tuo tua più come ogni tutto tutti anche ma senza su al alla',
+  nl: 'de het een en of in met voor van te is zijn je jouw meer als elke alle ook maar zonder op aan',
+  tr: 've ile bir bu şu için de da her daha gibi ama çok tüm',
+};
+const stopWords = (locale) => new Set([...STOP, ...(STOP_BY_LANG[locale.toLowerCase().split(/[-_]/)[0]] || '').split(' ').filter(Boolean)]);
 
 function checkFile(file) {
   const L = parse(file);
@@ -128,7 +141,8 @@ function checkFile(file) {
     if (f.kind === 'long') {
       const words = v.toLowerCase().match(/\p{L}[\p{L}'-]+/gu) || [];
       const freq = {};
-      for (const w of words) if (!STOP.has(w) && w.length > 2) freq[w] = (freq[w] || 0) + 1;
+      const stop = stopWords(locale);
+      for (const w of words) if (!stop.has(w) && w.length > 2) freq[w] = (freq[w] || 0) + 1;
       const brandWords = new Set((val('play.title') + ' ' + val('ios.name')).toLowerCase().match(/\p{L}+/gu) || []);
       for (const [w, c] of Object.entries(freq)) if (!brandWords.has(w) && c >= Math.max(7, words.length * 0.018)) warns.push(`${label}: "${w}" appears ${c}×, reads like keyword stuffing`);
       // Word blocks: many comma-separated fragments of one or two words (a sentence with a
@@ -141,8 +155,9 @@ function checkFile(file) {
       });
       if (block) warns.push(`${label}: a keyword list (many 1–2 word fragments); stores treat word blocks as spam`);
       if (/^\s*["“][^"”\n]{10,}["”]/m.test(v) || /["”]\s*[—–-]\s*[^\n]{0,40}\b(user|customer|player|reviewer|fan|parent|mom|dad)s?\b/i.test(v) || /★{3,}|⭐{3,}|\b[45](\.\d)? stars?\b/i.test(v)) warns.push(`${label}: looks like a testimonial or rating; Google requires attribution, and reviews belong in ratings`);
+      // Release notes aren't a hook: Play shows them whole, one change per line.
       const first = v.split(/\n\s*\n/)[0];
-      if (chars(first) > 320) warns.push(`${label}: the first paragraph is ${chars(first)} characters; only about 3 lines show before "more", so lead with a 1-2 sentence hook`);
+      if (!/whatsnew/i.test(f.key) && chars(first) > 320) warns.push(`${label}: the first paragraph is ${chars(first)} characters; only about 3 lines show before "more", so lead with a 1-2 sentence hook`);
       if (chars(v) < 600 && !f.optional) warns.push(`${label}: only ${chars(v)} characters; a fuller description (1,500–3,000) helps search and conversion`);
     }
   }

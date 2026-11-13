@@ -57,7 +57,7 @@ right device's capture for each store target.
 | `hideSelectors` | – | Hidden with `display:none`: cookie banners, install prompts, dev toolbars, chat widgets |
 | `setup` / `setupPath` | – | Actions run once per device before any shot, e.g. logging in with a seed account |
 | `cursor` | off for stills | Store screenshots never show a pointer. Recordings show a fingertip unless `false`. |
-| `out` | `captures/` next to the plan | `--out` overrides it, e.g. `store-assets/captures-de` for a localized set |
+| `out` | `captures/` next to the plan | Relative to the plan file. `--out` (relative to the working directory) overrides it, e.g. `store-assets/captures-de` for a localized set |
 
 ## Shot fields
 
@@ -151,6 +151,24 @@ Store screenshots are marketing. The app should look **lived-in, successful and 
   then use it full-bleed in `feature.html` (`data-device="desktop"`). A taller-than-500 capture
   leaves room to crop the HUD with `data-focus`.
 - WebGL games can be slow headless; add `--headed` if frames look stuck.
+- **Let the game play itself.** Random taps rarely produce a good moment. If the project has
+  a bot or an AI player (difficulty tuning, level calibration, tests), drive the real game with
+  it: put a small helper module in `store-assets/capture/`, load it from the dev server in an
+  `eval` (`import('/store-assets/capture/helpers.js').then((m) => m.bot())`), hook the game's
+  tick so the bot steers after every step (slow headless frames can run several ticks per
+  frame), and wait for a state (`m.until(...)`) before the `burst`. Use the same module to seed
+  a save (`localStorage`, then `reload`) so each shot opens on the level, chapter or menu it
+  needs. A dev-only hook on `window` (e.g. the scene) is often all the game has to expose.
+- **Pick burst frames per device.** Bursts differ per device and per take. Look at them, copy
+  the best one to `<shot>.png` in each device folder (that's the name the design uses), and
+  retake a shot with `--only <name> --devices <device>` when a run went badly. Before
+  committing, delete the unused `-01…` frames and drop them from `manifest.json`.
+- **Seeded state per shot.** `localStorage` in the plan only fills keys that are empty. For a
+  different save per shot, use `"fresh": true` and write the save in `before` with an `eval`,
+  then `reload`.
+- **Localized sets:** a copy of the plan with translated selectors (`text=START` →
+  `text=MULAI`), the game's language in the seed, and `"out": "captures-id"` (relative to the
+  plan file).
 
 ```json
 {
